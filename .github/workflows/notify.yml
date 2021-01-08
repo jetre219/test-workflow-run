@@ -7,6 +7,7 @@ on:
     types:
       - completed
 
+
 jobs:
   notify:
     name: Notify on workflow failure
