@@ -1,0 +1,17 @@
+name: notify
+
+on:
+  workflow_run:
+    workflows:
+      - "*"
+    types:
+      - completed
+
+jobs:
+  notify:
+    name: Notify on workflow failure
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      - name: Notify slack fail
+        run: echo "patate"
