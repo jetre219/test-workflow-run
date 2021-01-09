@@ -11,7 +11,12 @@ jobs:
   notify:
     name: Notify on workflow failure
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
     steps:
-      - name: Notify slack fail
-        run: echo "patate"
+      - run: echo ${{ github.event.workflow_run.details_url }}
+      - run: echo ${{ github.event.workflow_run.head_sha }}
+      - run: echo ${{ github.event.workflow_run.node_id }}
+      - run: echo ${{ github.event.workflow_run.head_branch }}
+      - run: echo ${{ github.event.workflow_run.details_url }}
+      - run: echo ${{ github.event.workflow_run.details_url }}
+      - run: echo ${{ github.event.workflow_run.details_url }}
+      - run: echo ${{ github.event.workflow_run.details_url }}
