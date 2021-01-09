@@ -12,11 +12,7 @@ jobs:
     name: Notify on workflow failure
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ github.event.workflow_run.details_url }}
-      - run: echo ${{ github.event.workflow_run.head_sha }}
-      - run: echo ${{ github.event.workflow_run.node_id }}
-      - run: echo ${{ github.event.workflow_run.head_branch }}
-      - run: echo ${{ github.event.workflow_run.details_url }}
-      - run: echo ${{ github.event.workflow_run.details_url }}
-      - run: echo ${{ github.event.workflow_run.details_url }}
-      - run: echo ${{ github.event.workflow_run.details_url }}
+      - run: echo ${{ github.event.workflow_run.url }}
+      - run: echo ${{ github.event.workflow_run.name }}
+      - run: echo ${{ github.event.workflow_run.requested_action }}
+      - run: echo ${{ github.event.workflow_run.sender }}
