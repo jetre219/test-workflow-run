@@ -1,18 +1,16 @@
 name: notify
 
 on:
-  workflow_run:
-    workflows:
-      - "*"
-    types:
-      - completed
+  push
 
 jobs:
   notify:
     name: Notify on workflow failure
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ github.event.workflow_run.url }}
-      - run: echo ${{ github.event.workflow_run.name }}
-      - run: echo ${{ github.event.workflow_run.requested_action }}
-      - run: echo ${{ github.event.workflow_run.sender }}
+      - name: Test
+        id: test
+        run: |
+          healthcheckHost=$(echo "\"test\"" | sed 's/\"//g')
+          echo "::set-output name=HEALTHCHECK_HOST::$healthcheckHost"
+      - run: echo ${{ steps.test.outputs.HEALTHCHECK_HOST }}
