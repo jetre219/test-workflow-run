@@ -8,9 +8,21 @@ jobs:
     name: Notify on workflow failure
     runs-on: ubuntu-latest
     steps:
-      - name: Test
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 0.14.4
+          terraform_wrapper: false
+
+
+      - name: terraform
         id: test
         run: |
-          healthcheckHost=$(echo "\"test\"" | sed 's/\"//g')
+          terraform init && terraform apply -auto-approve
+          healthcheckHost=$(terraform output -raw default_hostname)
           echo "::set-output name=HEALTHCHECK_HOST::$healthcheckHost"
+
       - run: echo ${{ steps.test.outputs.HEALTHCHECK_HOST }}
